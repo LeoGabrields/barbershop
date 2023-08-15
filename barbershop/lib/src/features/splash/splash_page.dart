@@ -1,3 +1,4 @@
+import 'package:asyncstate/asyncstate.dart';
 import 'package:flutter/material.dart';
 
 class SplashPage extends StatelessWidget {
@@ -9,7 +10,14 @@ class SplashPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(''),
       ),
-      body: Container(),
+      body: Container(
+        child: ElevatedButton(
+          onPressed: () async {
+            await Future.delayed(const Duration(seconds: 2)).asyncLoader();
+          },
+          child: const Text('Teste Loader'),
+        ),
+      ),
     );
   }
 }
