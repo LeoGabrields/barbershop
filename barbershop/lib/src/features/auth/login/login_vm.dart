@@ -1,4 +1,5 @@
 import 'package:asyncstate/asyncstate.dart';
+import 'package:barbershop/src/models/user_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../core/exceptions/service_excepiton.dart';
@@ -22,9 +23,13 @@ class LoginVm extends _$LoginVm {
 
     switch (result) {
       case Success():
-        // Buscar dados do usuário logado
-        // Fazer uma analise para qual o tipo do Login
-        break;
+        final userModel = await ref.read(getMeProvider.future);
+        switch (userModel) {
+          case UserModelADM():
+            state = state.copyWith(status: LoginStateStatus.admLogin);
+          case UserModelEmployee():
+            state = state.copyWith(status: LoginStateStatus.employeeLogin);
+        }
       case Failure(exception: ServiceExcepiton(:final message)):
         state.copyWith(
           status: LoginStateStatus.error,
