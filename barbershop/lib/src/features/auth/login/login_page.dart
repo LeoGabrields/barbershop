@@ -78,7 +78,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           ),
                           TextFormField(
                             controller: emailEC,
-                            onTapOutside: (_) => unfocus(context),
+                            onTapOutside: (_) => context.unfocus(),
                             keyboardType: TextInputType.emailAddress,
                             decoration: const InputDecoration(
                               label: Text('E-mail'),
@@ -98,7 +98,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           ),
                           TextFormField(
                             controller: passwordEC,
-                            onTapOutside: (_) => unfocus(context),
+                            onTapOutside: (_) => context.unfocus(),
                             obscureText: true,
                             decoration: const InputDecoration(
                               label: Text('Senha'),
