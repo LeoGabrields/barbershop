@@ -147,16 +147,22 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           )
                         ],
                       ),
-                      const Align(
+                      Align(
                         alignment: Alignment.bottomCenter,
                         child: Padding(
-                          padding: EdgeInsets.only(bottom: 40),
-                          child: Text(
-                            'Criar conta',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
+                          padding: const EdgeInsets.only(bottom: 40),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.of(context)
+                                  .pushNamed('/auth/register/user');
+                            },
+                            child: const Text(
+                              'Criar conta',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
                         ),
