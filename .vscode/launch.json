@@ -5,21 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "barbershop",
-            "cwd": "barbershop",
+            "name": "dw11",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "barbershop (profile mode)",
-            "cwd": "barbershop",
+            "name": "dw11 (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "barbershop (release mode)",
-            "cwd": "barbershop",
+            "name": "dw11 (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
