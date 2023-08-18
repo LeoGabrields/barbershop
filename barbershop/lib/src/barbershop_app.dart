@@ -2,6 +2,7 @@ import 'package:asyncstate/widget/async_state_builder.dart';
 
 import 'package:flutter/material.dart';
 
+import 'core/ui/barbershop_nav_global_key.dart';
 import 'core/ui/barbershop_theme.dart';
 import 'core/ui/widgets/barbershop_loader.dart';
 import 'features/auth/login/login_page.dart';
@@ -20,6 +21,7 @@ class BarbershopApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: BarbershopTheme.themeData,
           navigatorObservers: [asyncNavigatorObserver],
+          navigatorKey: BarbershopNavGlobalKey.instance.navkey,
           routes: {
             '/': (_) => const SplashPage(),
             '/auth/login': (_) => const LoginPage(),
