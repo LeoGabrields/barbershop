@@ -1,22 +1,53 @@
+import 'package:barbershop/src/core/ui/helpers/form_helper.dart';
+import 'package:barbershop/src/core/ui/helpers/messages.dart';
+import 'package:barbershop/src/features/auth/register/barbershop/barbershop_register_vm.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:validatorless/validatorless.dart';
 
 import '../../../../core/ui/widgets/hours_panel.dart';
 import '../../../../core/ui/widgets/week_days_panel.dart';
+import 'barbershop_register_state.dart';
 
-class BarbershopRegisterPage extends StatefulWidget {
+class BarbershopRegisterPage extends ConsumerStatefulWidget {
   const BarbershopRegisterPage({super.key});
 
   @override
-  State<BarbershopRegisterPage> createState() => _BarbershopRegisterPageState();
+  ConsumerState<BarbershopRegisterPage> createState() =>
+      _BarbershopRegisterPageState();
 }
 
-class _BarbershopRegisterPageState extends State<BarbershopRegisterPage> {
+class _BarbershopRegisterPageState
+    extends ConsumerState<BarbershopRegisterPage> {
   final formKey = GlobalKey<FormState>();
   final nameEC = TextEditingController();
   final emailEC = TextEditingController();
 
   @override
+  void dispose() {
+    nameEC.dispose();
+    emailEC.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final barbershopRegisterVM =
+        ref.watch(barbershopRegisterVmProvider.notifier);
+
+    ref.listen(barbershopRegisterVmProvider, (_, state) {
+      switch (state.status) {
+        case BarbershopRegisterStateStatus.initial:
+          break;
+        case BarbershopRegisterStateStatus.error:
+          Messages.showError(
+              'Desculpe ocorreu um erro ao registrar barbearia', context);
+        case BarbershopRegisterStateStatus.success:
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil('/home/adm', (route) => false);
+      }
+    });
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cadastrar estabelecimento'),
@@ -31,27 +62,48 @@ class _BarbershopRegisterPageState extends State<BarbershopRegisterPage> {
                 const SizedBox(height: 5),
                 TextFormField(
                   controller: nameEC,
+                  onTapOutside: (_) => context.unfocus(),
                   decoration: const InputDecoration(
                     label: Text('Nome'),
                   ),
+                  validator: Validatorless.required('Nome obrigatório'),
                 ),
                 const SizedBox(height: 24),
                 TextFormField(
                   controller: emailEC,
+                  keyboardType: TextInputType.emailAddress,
+                  onTapOutside: (_) => context.unfocus(),
                   decoration: const InputDecoration(
                     label: Text('E-mail'),
                   ),
+                  validator: Validatorless.multiple([
+                    Validatorless.required('E-mail obrigatório'),
+                    Validatorless.email('E-mail invalido')
+                  ]),
                 ),
                 const SizedBox(height: 24),
-                const WeekDaysPanel(),
+                WeekDaysPanel(
+                    onDayPressed: barbershopRegisterVM.addOrRemoveOpenDay),
                 const SizedBox(height: 24),
-                const HoursPanel(startTime: 6, endTime: 23),
+                HoursPanel(
+                  startTime: 6,
+                  endTime: 23,
+                  onPressed: barbershopRegisterVM.addOrRemoveOpenHours,
+                ),
                 const SizedBox(height: 24),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(56),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      switch (formKey.currentState?.validate()) {
+                        case false || null:
+                          Messages.showError('Formulário inválido', context);
+                        case true:
+                          barbershopRegisterVM.register(
+                              nameEC.text, emailEC.text);
+                      }
+                    },
                     child: const Text('CADASTRAR ESTABELECIMENTO'))
               ],
             ),
