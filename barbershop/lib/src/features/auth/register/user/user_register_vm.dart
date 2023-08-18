@@ -1,9 +1,9 @@
 import 'package:asyncstate/asyncstate.dart';
-import 'package:barbershop/src/core/fp/either.dart';
-import 'package:barbershop/src/core/providers/application_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'user_register_providers.dart';
+import '../../../../core/fp/either.dart';
+import '../../../../core/providers/application_providers.dart';
+import '../../../../core/providers/user_register_providers.dart';
 
 part 'user_register_vm.g.dart';
 
