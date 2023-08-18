@@ -1,16 +1,21 @@
+import 'dart:developer';
+
+import 'package:barbershop/src/core/ui/helpers/messages.dart';
+import 'package:barbershop/src/features/splash/splash_vm.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/ui/constants.dart';
 import '../auth/login/login_page.dart';
 
-class SplashPage extends StatefulWidget {
+class SplashPage extends ConsumerStatefulWidget {
   const SplashPage({super.key});
 
   @override
-  State<SplashPage> createState() => _SplashPageState();
+  ConsumerState<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage> {
+class _SplashPageState extends ConsumerState<SplashPage> {
   var _scale = 10.0;
   var _animationOpacityLogo = 0.0;
 
@@ -30,6 +35,27 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen(splashVmProvider, (_, state) {
+      state.whenOrNull(error: (error, stackTrace) {
+        log('Erro ao validar login', error: error, stackTrace: stackTrace);
+        Messages.showError('Erro ao validar o login', context);
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('/auth/login', (route) => false);
+      }, data: (data) {
+        switch (data) {
+          case SplashState.loggedAdm:
+            Navigator.of(context)
+                .pushNamedAndRemoveUntil('/home/adm', (route) => false);
+          case SplashState.loggedEmployee:
+            Navigator.of(context)
+                .pushNamedAndRemoveUntil('/home/employee', (route) => false);
+          case _:
+            Navigator.of(context)
+                .pushNamedAndRemoveUntil('/auth/login', (route) => false);
+        }
+      });
+    });
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: DecoratedBox(
