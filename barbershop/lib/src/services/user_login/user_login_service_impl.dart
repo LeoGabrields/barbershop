@@ -15,7 +15,7 @@ class UserLoginServiceImpl implements UserLoginService {
   });
 
   @override
-  Future<Either<ServiceExcepiton, Nil>> execute(
+  Future<Either<ServiceException, Nil>> execute(
       String email, String password) async {
     final loginResult = await userRepository.login(email, password);
 
@@ -27,9 +27,9 @@ class UserLoginServiceImpl implements UserLoginService {
       case Failure(:final exception):
         return switch (exception) {
           AuthError() =>
-            Failure(ServiceExcepiton(message: 'Error ao realizar Login')),
+            Failure(ServiceException(message: 'Error ao realizar Login')),
           AuthUnauthorizedException() =>
-            Failure(ServiceExcepiton(message: 'Login ou senha inválidos')),
+            Failure(ServiceException(message: 'Login ou senha inválidos')),
         };
     }
   }

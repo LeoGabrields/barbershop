@@ -3,5 +3,5 @@ import '../../core/fp/either.dart';
 import '../../core/fp/nil.dart';
 
 abstract interface class UserLoginService {
-  Future<Either<ServiceExcepiton, Nil>> execute(String email, String password);
+  Future<Either<ServiceException, Nil>> execute(String email, String password);
 }

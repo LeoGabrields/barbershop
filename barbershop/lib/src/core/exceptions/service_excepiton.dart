@@ -1,6 +1,6 @@
-class ServiceExcepiton implements Exception {
+class ServiceException implements Exception {
   final String message;
-  ServiceExcepiton({
+  ServiceException({
     required this.message,
   });
 }
