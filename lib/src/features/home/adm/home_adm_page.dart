@@ -1,15 +1,20 @@
-import 'package:barbershop/src/core/ui/barbershop_icon.dart';
-import 'package:barbershop/src/core/ui/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/ui/barbershop_icon.dart';
+import '../../../core/ui/constants.dart';
+import '../../../core/ui/widgets/barbershop_loader.dart';
 import '../widgets/home_header.dart';
+import 'home_adm_vm.dart';
 import 'widgets/home_employee_tile.dart';
 
-class HomeAdmPage extends StatelessWidget {
+class HomeAdmPage extends ConsumerWidget {
   const HomeAdmPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final homeState = ref.watch(homeAdmVmProvider);
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         shape: const CircleBorder(),
@@ -24,18 +29,32 @@ class HomeAdmPage extends StatelessWidget {
           ),
         ),
       ),
-      body: CustomScrollView(
-        slivers: [
-          const SliverToBoxAdapter(
-            child: HomeHeader(),
-          ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              childCount: 10,
-              (context, index) => const HomeEmployeeTile(),
-            ),
-          )
-        ],
+      body: homeState.when(
+        data: (data) {
+          return CustomScrollView(
+            slivers: [
+              const SliverToBoxAdapter(
+                child: HomeHeader(),
+              ),
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  childCount: data.employees.length,
+                  (context, index) => HomeEmployeeTile(
+                    employee: data.employees[index],
+                  ),
+                ),
+              )
+            ],
+          );
+        },
+        error: (_, __) {
+          return const Center(
+            child: Text('Erro ao carregar página'),
+          );
+        },
+        loading: () {
+          return const BarbershopLoader();
+        },
       ),
     );
   }
