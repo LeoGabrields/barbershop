@@ -6,12 +6,14 @@ class HoursPanel extends StatelessWidget {
   final int startTime;
   final int endTime;
   final ValueChanged<int> onPressed;
+  final List<int>? enableTimes;
 
   const HoursPanel({
     super.key,
     required this.startTime,
     required this.endTime,
     required this.onPressed,
+    this.enableTimes,
   });
 
   @override
@@ -37,6 +39,7 @@ class HoursPanel extends StatelessWidget {
                 label: '${i.toString().padLeft(2, '0')}:00',
                 value: i,
                 onPressed: onPressed,
+                enableTimes: enableTimes,
               ),
           ],
         )
@@ -49,12 +52,14 @@ class TimerButton extends StatefulWidget {
   final String label;
   final int value;
   final ValueChanged<int> onPressed;
+  final List<int>? enableTimes;
 
   const TimerButton({
     super.key,
     required this.label,
     required this.value,
     required this.onPressed,
+    this.enableTimes,
   });
 
   @override
@@ -71,14 +76,24 @@ class _TimerButtonState extends State<TimerButton> {
     final buttonBorderColor =
         selected ? ColorsConstants.brow : ColorsConstants.grey;
 
+    final TimerButton(:label, :enableTimes, :onPressed, :value) = widget;
+
+    final disableTime = enableTimes != null && !enableTimes.contains(value);
+
+    if (disableTime) {
+      buttonColor = Colors.grey[400]!;
+    }
+
     return InkWell(
       borderRadius: BorderRadius.circular(8),
-      onTap: () {
-        setState(() {
-          selected = !selected;
-          widget.onPressed(widget.value);
-        });
-      },
+      onTap: disableTime
+          ? null
+          : () {
+              setState(() {
+                selected = !selected;
+                onPressed(value);
+              });
+            },
       child: Container(
         width: 64,
         height: 36,
@@ -91,7 +106,7 @@ class _TimerButtonState extends State<TimerButton> {
           ),
         ),
         child: Text(
-          widget.label,
+          label,
           style: TextStyle(
             fontSize: 12,
             color: textColor,
