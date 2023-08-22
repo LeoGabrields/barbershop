@@ -126,4 +126,34 @@ class UserRepositoryImpl implements UserRepository {
           message: 'Erro ao inserir administrador como colaborador'));
     }
   }
+
+  @override
+  Future<Either<RepositoryException, Nil>> registerEmployee(
+      ({
+        int barbershopId,
+        String email,
+        String name,
+        String password,
+        List<String> workdays,
+        List<int> workhours
+      }) userModel) async {
+    try {
+      await restClient.auth.post('/users/', data: {
+        'name': userModel.name,
+        'email': userModel.email,
+        'password': userModel.password,
+        'barbershop_id': userModel.barbershopId,
+        'profile': 'EMPLOYEE',
+        'work_days': userModel.workdays,
+        'work_hours': userModel.workhours,
+      });
+
+      return Success(nil);
+    } on DioException catch (e, s) {
+      log('Erro ao inserir administrador como colaborador',
+          error: e, stackTrace: s);
+      return Failure(RepositoryException(
+          message: 'Erro ao inserir administrador como colaborador'));
+    }
+  }
 }
