@@ -6,6 +6,6 @@ class BarbershopNavGlobalKey {
 
   BarbershopNavGlobalKey._();
 
-  static BarbershopNavGlobalKey get instance =>
+  static BarbershopNavGlobalKey get i =>
       _instance ??= BarbershopNavGlobalKey._();
 }

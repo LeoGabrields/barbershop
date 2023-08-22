@@ -24,7 +24,7 @@ class BarbershopApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: BarbershopTheme.themeData,
           navigatorObservers: [asyncNavigatorObserver],
-          navigatorKey: BarbershopNavGlobalKey.instance.navkey,
+          navigatorKey: BarbershopNavGlobalKey.i.navkey,
           routes: {
             '/': (_) => const SplashPage(),
             '/auth/login': (_) => const LoginPage(),
