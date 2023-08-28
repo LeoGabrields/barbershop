@@ -78,6 +78,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           ),
                           TextFormField(
                             controller: emailEC,
+                            autofillHints: const [AutofillHints.email],
                             onTapOutside: (_) => context.unfocus(),
                             keyboardType: TextInputType.emailAddress,
                             decoration: const InputDecoration(
