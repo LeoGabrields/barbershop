@@ -33,7 +33,8 @@ class UserRepositoryImpl implements UserRepository {
         final Response(:statusCode) = e.response!;
         if (statusCode == HttpStatus.forbidden) {
           log('Login ou senha inválidos', error: e, stackTrace: s);
-          return Failure(AuthUnauthorizedException());
+          return Failure(
+              AuthUnauthorizedException(message: 'Login ou senha inválidos'));
         }
       }
       log('Erro ao realizar login', error: e, stackTrace: s);

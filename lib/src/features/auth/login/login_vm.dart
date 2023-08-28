@@ -35,7 +35,7 @@ class LoginVm extends _$LoginVm {
             state = state.copyWith(status: LoginStateStatus.employeeLogin);
         }
       case Failure(exception: ServiceException(:final message)):
-        state.copyWith(
+        state = state.copyWith(
           status: LoginStateStatus.error,
           errorMessage: () => message,
         );

@@ -60,7 +60,8 @@ class HomeEmployeeTile extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.of(context).pushNamed('/schedule');
+                        Navigator.of(context)
+                            .pushNamed('/schedule', arguments: employee);
                       },
                       child: const Text('AGENDAR'),
                     ),
