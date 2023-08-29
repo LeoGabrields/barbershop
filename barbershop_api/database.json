@@ -1,1 +1,86 @@
-{"users":[{"id":5,"name":"Leandro Gabriel","email":"leogabriel@gmail.com","password":"12345678","profile":"ADM","work_days":["Qua"],"work_hours":[8,9,12,13]},{"id":6,"name":"teste","email":"te@gmail.com","password":"123456","profile":"ADM"},{"id":7,"name":"Teste","email":"teste@teste.com","password":"123456","barbershop_id":2,"profile":"EMPLOYEE","work_days":["Seg","Qua"],"work_hours":[7,8]},{"id":8,"name":"Teste2","email":"tes@t.com","password":"123456","barbershop_id":2,"profile":"EMPLOYEE","work_days":["Seg"],"work_hours":[8]},{"id":9,"name":"t2","email":"t@gmail.com","password":"123456","barbershop_id":2,"profile":"EMPLOYEE","work_days":["Qua"],"work_hours":[7,8,9]}],"adm_users":[],"barbershop":[{"id":2,"user_id":"5","name":"Barbearia X","email":"barbeariax@gmail.com","opening_days":["Seg","Qua","Sab"],"opening_hours":[6,7,8,9,18,19,20,12,13]},{"id":3,"user_id":"6","name":"teste","email":"t@gmail.com","opening_days":["Seg","Ter","Qua","Qui","Sex"],"opening_hours":[7,8,9,10,11,14,15,16,17,18,19]}],"schedules":[{"id":1,"barbershop_id":2,"user_id":5,"client_name":"teste","date":"2023-08-09T00:00:00.000Z","time":8},{"id":2,"barbershop_id":2,"user_id":5,"client_name":"Leo","date":"2023-08-30T00:00:00.000Z","time":9}]}
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Teste",
+            "email": "teste@gmail.com",
+            "password": "123123",
+            "profile": "ADM",
+            "work_days": [
+                "Seg",
+                "Ter",
+                "Qua",
+                "Qui",
+                "Sex"
+            ],
+            "work_hours": [
+                7,
+                8,
+                9,
+                10,
+                11,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+            ]
+        }
+    ],
+    "adm_users": [],
+    "barbershop": [
+        {
+            "id": 1,
+            "user_id": "1",
+            "name": "Teste",
+            "email": "teste@gmail.com",
+            "opening_days": [
+                "Seg",
+                "Ter",
+                "Qua",
+                "Qui",
+                "Sex"
+            ],
+            "opening_hours": [
+                7,
+                8,
+                9,
+                10,
+                11,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+            ]
+        }
+    ],
+    "schedules": [
+        {
+            "id": 1,
+            "barbershop_id": 1,
+            "user_id": 1,
+            "client_name": "test",
+            "date": "2023-08-29T00:00:00.000Z",
+            "time": 19
+        },
+        {
+            "id": 2,
+            "barbershop_id": 1,
+            "user_id": 1,
+            "client_name": "Leo",
+            "date": "2023-08-29T00:00:00.000Z",
+            "time": 18
+        },
+        {
+            "id": 3,
+            "barbershop_id": 1,
+            "user_id": 1,
+            "client_name": "Teste2",
+            "date": "2023-08-30T00:00:00.000Z",
+            "time": 7
+        }
+    ]
+}

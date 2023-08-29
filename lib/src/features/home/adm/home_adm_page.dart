@@ -1,3 +1,4 @@
+import 'package:barbershop/src/core/providers/application_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -21,6 +22,7 @@ class HomeAdmPage extends ConsumerWidget {
         backgroundColor: ColorsConstants.brow,
         onPressed: () async {
           await Navigator.of(context).pushNamed('/employee/register');
+          ref.invalidate(getMeProvider);
           ref.invalidate(homeAdmVmProvider);
         },
         child: const CircleAvatar(
