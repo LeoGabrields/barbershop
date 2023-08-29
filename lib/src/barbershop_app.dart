@@ -1,5 +1,4 @@
 import 'package:asyncstate/widget/async_state_builder.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -12,6 +11,7 @@ import 'features/auth/register/user/user_register_page.dart';
 import 'features/employee/register/employee_register_page.dart';
 import 'features/employee/schedule/employee_schedule_page.dart';
 import 'features/home/adm/home_adm_page.dart';
+import 'features/home/employee/home_employee_page.dart';
 import 'features/schedules/schedule_page.dart';
 import 'features/splash/splash_page.dart';
 
@@ -42,7 +42,7 @@ class BarbershopApp extends StatelessWidget {
             '/auth/register/user': (_) => const UserRegisterPage(),
             '/auth/register/barbershop': (_) => const BarbershopRegisterPage(),
             '/home/adm': (_) => const HomeAdmPage(),
-            '/home/employee': (_) => const Text('Employee'),
+            '/home/employee': (_) => const HomeEmployeePage(),
             '/employee/register': (_) => const EmployeeRegisterPage(),
             '/employee/schedule': (_) => const EmployeeSchedulePage(),
             '/schedule': (_) => const SchedulePage(),

@@ -44,7 +44,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               .pushNamedAndRemoveUntil('/home/adm', (route) => false);
         case LoginState(status: LoginStateStatus.employeeLogin):
           Navigator.of(context)
-              .pushNamedAndRemoveUntil('/home/adm', (route) => false);
+              .pushNamedAndRemoveUntil('/home/employee', (route) => false);
       }
     });
 
