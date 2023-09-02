@@ -11,7 +11,7 @@ Aplicação desenvolvida durante a Dart Week 11, evento organizado pelo [Rodrigo
 
 ## Como rodar a aplicação
 ### Pré-requisitos
- - [Dart](https://dart.dev/get-dart)
+ - Dart
  - [Flutter](https://flutter.dev/docs/get-started/install)
  - [Git](https://git-scm.com/)
 
