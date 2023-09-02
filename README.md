@@ -15,19 +15,19 @@ Aplicação desenvolvida durante a Dart Week 11, evento organizado pelo [Rodrigo
 
 ### Clone este repositório
 ```bash
-$ git clone https://github.com/LeoGabrields/dw_barbershop.git
+git clone https://github.com/LeoGabrields/dw_barbershop.git
 ```
 ### Acesse a pasta do projeto no terminal/cmd
 ```bash
-$ cd dw_barbershop
+cd dw_barbershop
 ```
 ### Instale as dependências
 ```bash
-$ flutter pub get
+flutter pub get
 ```
 ### Execute a aplicação
 ```bash
-$ flutter run
+flutter run
 ```
 
 ### Rodando o backend
