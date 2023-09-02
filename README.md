@@ -6,6 +6,8 @@ Aplicação desenvolvida durante a Dart Week 11, evento organizado pelo [Rodrigo
  - Flutter
  - Riverpod para gerenciamento de estado e injeção de dependência.
  - json_rest_server para o backend
+ - SharedPreferences
+ - dio
 
 ## Como rodar a aplicação
 ### Pré-requisitos
